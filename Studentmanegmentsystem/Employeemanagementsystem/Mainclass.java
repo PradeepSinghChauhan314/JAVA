@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class Mainclass{
         public static void main(String[] args) {
-        EmployeeManager manager=new EmployeeManager();
+        Employeemanager manager=new Employeemanager();
         Scanner scanner=new Scanner(System.in);
         while(true){
             System.out.println("\n Employee Management System");
@@ -24,46 +24,68 @@ public class Mainclass{
             String name= scanner.nextLine();
             scanner.nextLine();
             System.out.println("\n Enter Employee salary.");
-            int salary=scanner.nextInt();
+            double salary=scanner.nextDouble();
             scanner.nextLine();
             System.out.println("\n Enter Employee department.");
-            int department=scanner.nextInt();
-            scanner.nextLine();
-        
+            String department=scanner.nextLine();
+            manager.addEmployee(idcard , name, salary, department);
+            break;
              case 2:
-             manager.viewEmployees();
+             System.out.println(" Employee List ");
+             for(Employee emp :manager.getAllEmployees()){
+                System.out.println(emp);
+             }
              break;
              case 3:
              System.out.println("Enter Idcard No. to Search:");
              int SearchId=scanner.nextInt();
-             manager.searchEmployees(SearchId );
+             Employee emp=manager.getEmployeeById(SearchId );
+             if (emp!=null){
+                System.out.println("Found;" +emp);
+             }
+             else{
+                System.out.println("Employee not found!");
+             }
              break;
              case 4:
-             manager.sortByName();
-             manager.viewEmployees();
+             System.out.print("Enter Emp ID to update salary: ");
+             int updateId = scanner.nextInt();
+             System.out.print("Enter new Salary: ");
+             double newSalary = scanner.nextDouble();
+             manager.updateSalary(updateId, newSalary);
              break;
-             case 5:
-             manager.sortBySalarys();
-             manager.viewEmployees();
+
+         case 5:
+             System.out.print("Enter Emp ID to update department: ");
+             int updateDeptId = scanner.nextInt();
+             scanner.nextLine(); 
+             System.out.print("Enter new Department: ");
+             String newDepartment = scanner.nextLine();
+             manager.updateDepartment(updateDeptId, newDepartment);
              break;
-             case 6:
-             System.out.println("Enter Idcard No. to delete:");
-             int deleteId=scanner.nextInt();
+
+         case 6:
+             System.out.print("Enter Emp ID to delete: ");
+             int deleteId = scanner.nextInt();
              manager.deleteEmployee(deleteId);
              break;
-             case 7:
-             System.out.println("Exiting Program...");
+
+         case 7:
+             manager.sortBySalary();
+             break;
+
+         case 8:
+             manager.sortByName();
+             break;
+
+         case 9:
+             System.out.println("Exiting... ");
              scanner.close();
-             return;
-             default:
-             System.out.println("Invailid choice try again.");
+             System.exit(0);
 
-
-
-        }
-        
-    }
-    
-    }
+         default:
+             System.out.println(" Invalid choice! Try again.");
+     }
+ }
 }
-
+}  
