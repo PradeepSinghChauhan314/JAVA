@@ -1,0 +1,16 @@
+// Source code is decompiled from a .class file using FernFlower decompiler.
+package mypackage;
+
+public class Evenodd {
+   public Evenodd() {
+   }
+
+   public void showEvenodd(int var1) {
+      if (var1 % 2 == 0) {
+         System.out.println("X is even number");
+      } else {
+         System.out.println("X is odd number");
+      }
+
+   }
+}
